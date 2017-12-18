@@ -53,7 +53,7 @@ StatelessSwitchAccessory.prototype.setStatus = function(value, callback) {
     this.log('Setting switch off');
     rpio.write(this.pin, this.initialState);
     this.service.setCharacteristic(Characteristic.On, false);
-  }.bind(this), 700);
+  }.bind(this), 2000);
   callback();
 }
 
