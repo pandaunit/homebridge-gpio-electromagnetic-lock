@@ -6,10 +6,10 @@ module.exports = function(homebridge) {
   Service = homebridge.hap.Service;
   Characteristic = homebridge.hap.Characteristic;
 
-  homebridge.registerAccessory('homebridge-gpio-stateless-switch', 'StatelessSwitch', StatelessSwitchAccessory);
+  homebridge.registerAccessory('homebridge-gpio-electromagnetic-lock', 'ElectromagneticLock', ElectromagneticLockAccessory);
 }
 
-function StatelessSwitchAccessory(log, config) {
+function ElectromagneticLockAccessory(log, config) {
   _.defaults(config, {activeLow: true});
 
   this.log = log;
@@ -18,12 +18,12 @@ function StatelessSwitchAccessory(log, config) {
   this.initialState = config['activeLow'] ? rpio.HIGH : rpio.LOW;
   this.activeState = config['activeLow'] ? rpio.LOW : rpio.HIGH;
 
-  this.service = new Service.Switch(this.name);
+  this.service = new Service.LockMechanism(this.name);
 
   this.infoService = new Service.AccessoryInformation();
   this.infoService
     .setCharacteristic(Characteristic.Manufacturer, 'Radoslaw Sporny')
-    .setCharacteristic(Characteristic.Model, 'RaspberryPi GPIO Stateless Switch')
+    .setCharacteristic(Characteristic.Model, 'RaspberryPi GPIO Electromagnetic Lock')
     .setCharacteristic(Characteristic.SerialNumber, 'Version 1.0.0');
 
   // use gpio pin numbering
@@ -33,30 +33,36 @@ function StatelessSwitchAccessory(log, config) {
   rpio.open(this.pin, rpio.OUTPUT, this.initialState);
 
   this.service
-    .getCharacteristic(Characteristic.On)
-    .on("get", this.getStatus.bind(this))
-    .on('set', this.setStatus.bind(this));
+    .getCharacteristic(Characteristic.LockCurrentState)
+    .on('get', this.getState.bind(this));
+
+  this.service
+    .getCharacteristic(Characteristic.LockTargetState)
+    .on('get', this.getState.bind(this))
+    .on('set', this.setState.bind(this));
 }
 
-StatelessSwitchAccessory.prototype.getStatus = function(callback) {
-  callback(null, false);
+ElectromagneticLockAccessory.prototype.getState = function(callback) {
+  callback(null, Characteristic.LockCurrentState.SECURED);
 }
 
-StatelessSwitchAccessory.prototype.setStatus = function(value, callback) {
-  if (!value) {
+ElectromagneticLockAccessory.prototype.setState = function(state, callback) {
+  if (state) { // can't lock electromagnetic with memory
     callback();
     return true;
   }
-  this.log('Setting switch on');
+  this.log('Setting state to UNLOCKED');
   rpio.write(this.pin, this.activeState);
+  this.service.setCharacteristic(Characteristic.LockCurrentState, state);
   setTimeout(function() {
-    this.log('Setting switch off');
+    this.log('Setting state to LOCKED');
     rpio.write(this.pin, this.initialState);
-    this.service.setCharacteristic(Characteristic.On, false);
-  }.bind(this), 2000);
+    this.service.setCharacteristic(Characteristic.LockTargetState, Characteristic.LockTargetState.SECURED);
+    this.service.setCharacteristic(Characteristic.LockCurrentState, Characteristic.LockCurrentState.SECURED);
+  }.bind(this), 1000);
   callback();
 }
 
-StatelessSwitchAccessory.prototype.getServices = function() {
+ElectromagneticLockAccessory.prototype.getServices = function() {
   return [this.infoService, this.service];
 }
