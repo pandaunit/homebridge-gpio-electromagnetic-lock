@@ -59,7 +59,7 @@ ElectromagneticLockAccessory.prototype.setState = function(state, callback) {
     rpio.write(this.pin, this.initialState);
     this.service.setCharacteristic(Characteristic.LockTargetState, Characteristic.LockTargetState.SECURED);
     this.service.setCharacteristic(Characteristic.LockCurrentState, Characteristic.LockCurrentState.SECURED);
-  }.bind(this), 1000);
+  }.bind(this), 2000);
   callback();
 }
 
