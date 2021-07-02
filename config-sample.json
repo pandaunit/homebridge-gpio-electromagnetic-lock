@@ -5,10 +5,10 @@
     "port": 51826,
     "pin": "031-45-154"
   },
-  "description": "This is an example configuration for the Homebridge GPIO Stateless Switch plugin",
+  "description": "This is an example configuration for the Homebridge GPIO Electromagnetic Lock plugin",
   "accessories": [
     {
-      "accessory": "StatelessSwitch",
+      "accessory": "ElectromagneticLock",
       "name": "Button",
       "pin": 5,
       "activeLow": false

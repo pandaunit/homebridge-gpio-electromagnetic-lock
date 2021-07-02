@@ -1,2 +1,2 @@
-# homebridge-gpio-stateless-switch
-Homebridge plugin to control stateless switch via Raspberry Pi GPIO pins.
+# homebridge-gpio-electromagnetic-lock
+Homebridge plugin to control electromagnetic lock via Raspberry Pi GPIO pins.

@@ -1,28 +1,28 @@
 {
-  "name": "homebridge-gpio-stateless-switch",
+  "name": "homebridge-gpio-electromagnetic-lock",
   "version": "1.0.0",
-  "description": "Homebridge plugin to control stateless switch via Raspberry Pi GPIO pins",
+  "description": "Homebridge plugin to control electromagnetic lock via Raspberry Pi GPIO pins",
   "license": "MIT",
   "keywords": [
     "homebridge-plugin",
     "homebridge",
     "raspberry",
     "gpio",
-    "switch",
-    "stateless",
-    "stateless-switch"
+    "lock",
+    "lock-mechanism",
+    "electromagnetic-lock",
+    "homekit"
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/rsporny/homebridge-gpio-stateless-switch"
+    "url": "https://github.com/rsporny/homebridge-gpio-electromagnetic-lock"
   },
   "dependencies": {
-    "rpio": "^0.9.12",
+    "rpio": "^2.2.0",
     "underscore": "^1.8.3"
   },
   "engines": {
-    "homebridge": ">=0.4.6",
-    "node": ">=6.6.0"
+    "homebridge": ">=1.2.3"
   },
   "maintainers": [
     {
