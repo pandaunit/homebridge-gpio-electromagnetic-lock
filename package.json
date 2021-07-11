@@ -1,6 +1,6 @@
 {
   "name": "homebridge-gpio-electromagnetic-lock",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Homebridge plugin to control electromagnetic lock via Raspberry Pi GPIO pins",
   "license": "MIT",
   "keywords": [
@@ -19,7 +19,8 @@
   },
   "dependencies": {
     "rpio": "^2.2.0",
-    "underscore": "^1.8.3"
+    "underscore": "^1.8.3",
+    "node-persist": "^2.1.0"
   },
   "engines": {
     "homebridge": ">=1.2.3"

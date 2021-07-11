@@ -11,7 +11,9 @@
       "accessory": "ElectromagneticLock",
       "name": "Button",
       "pin": 5,
-      "activeLow": false
+      "reedSwitch": 16,
+      "activeLow": false,
+      "reedSwitchActiveLow": false
     }
   ]
 }
