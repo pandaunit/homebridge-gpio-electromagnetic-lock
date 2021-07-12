@@ -10,8 +10,8 @@
     {
       "accessory": "ElectromagneticLock",
       "name": "Button",
-      "pin": 5,
-      "reedSwitch": 16,
+      "lockPin": 5,
+      "doorPin": 16,
       "activeLow": false,
       "reedSwitchActiveLow": false
     }
