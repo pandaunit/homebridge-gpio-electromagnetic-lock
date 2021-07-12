@@ -13,7 +13,9 @@
       "lockPin": 5,
       "doorPin": 16,
       "activeLow": false,
-      "reedSwitchActiveLow": false
+      "reedSwitchActiveLow": false,
+      "unlockingDuration": 2,
+      "lockWithMemory": true
     }
   ]
 }
