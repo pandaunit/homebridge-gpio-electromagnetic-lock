@@ -1,0 +1,53 @@
+{
+    "pluginAlias": "ElectromagneticLock",
+    "pluginType": "accessory",
+    "singular": false,
+    "headerDisplay": "Homebridge plugin to control electromagnetic lock via Raspberry Pi GPIO pins connected to relay.",
+    "schema": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "title": "Name",
+          "type": "string",
+          "required": true,
+          "description": "accessory name, e.g. Lock"
+        },
+        "lockPin": {
+            "title": "Lock GPIO pin",
+            "type": "integer",
+            "required": true,
+            "description": "pin for unlocking lock (use gpio numbering, not physical)"
+        },
+        "doorPin": {
+            "title": "Door contact sensor GPIO pin",
+            "type": "integer",
+            "description": "door contact sensor, ignored when lockWithMemory is set to false"
+        },
+        "activeLow": {
+            "title": "Relay activated by low state?",
+            "type": "boolean",
+            "default": true,
+            "description": "true: relay activated by low state (0), false: relay activated by high state (1), affects lockPin, default: true"
+        },
+        "reedSwitchActiveLow": {
+            "title": "Contact sensor relay activated by low state?",
+            "type": "boolean",
+            "default": true,
+            "description": "true: reed switch activated by low state (0), false: reed switch activated by high state (1), affects doorPin, default: true"
+        },
+        "unlockingDuration": {
+            "title": "Unlocking duration (seconds)",
+            "type": "integer",
+            "default": 2,
+            "description": "how long lockPin should be active (seconds), default: 2"
+        },
+        "lockWithMemory": {
+            "title": "Lock with memory?",
+            "type": "boolean",
+            "default": true,
+            "description": "true: electromagnetic lock that stays unlocked until full door cycle, false: stays unlocked only for unlockingDuration seconds, default: true"
+        }
+      }
+    }
+  }
+  
