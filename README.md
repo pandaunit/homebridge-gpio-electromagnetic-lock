@@ -43,3 +43,4 @@ Fields:
 - check platform: [Homebridge](https://github.com/nfarina/homebridge)
 - check plugin dependency: [rpio](https://www.npmjs.com/package/rpio)
 - or create issue
+
