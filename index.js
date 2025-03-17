@@ -66,7 +66,7 @@ function ElectromagneticLockAccessory(log, config) {
   }
 
   if (this.doorPin) {
-    rpio.open(this.doorPin, rpio.INPUT);
+    rpio.open(this.doorPin, rpio.INPUT, rpio.PULL_UP);
     if (this.lockWithMemory) {
       rpio.poll(this.doorPin, this.calculateLockWithMemoryState.bind(this));
     }
